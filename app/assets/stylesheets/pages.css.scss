@@ -413,7 +413,7 @@ body.pages.terms_of_service {
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 30px;
       margin-bottom: 1em;
     }
     input {
@@ -435,20 +435,17 @@ body.pages.terms_of_service {
       font-size: 1.4em;
       margin-bottom: .8em;
     }
-
-    .signin_container {
-      a {
-        text-align: left;
-      }
-      i {
-        margin-left: 5.4em;
-        margin-right: .6em;
-      }
+    .header { text-align: center; }
+    .main-content {
       float: none;
       margin: 0 auto;
+    }
+    .signin_container {
+      a { text-align: left; }
+      .btn-container{ text-align: center; }
       .login {
-        display: block;
-        margin: 0 .2em .8em 0;
+        width: 88px;
+        text-align: center;
         opacity: .9;
       }
     }

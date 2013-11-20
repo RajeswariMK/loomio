@@ -197,8 +197,8 @@ en:
   sign_out: "Sign out"
   sign_in: "Log in"
   tagline: "Creating a world where it's easy for anyone to participate in decisions that affect them."
-  or_sign_in_html: "Already have a Loomio account? <a href='%{link}'>Log in here</a>"
-  or_link_account_html: "Already have a Loomio account? <a href='%{link}'>Link it up</a>"
+  or_sign_in_html: "If you already have a Loomio account, <a href='%{link}'>log in here</a>"
+  or_link_account_html: "If you already have a Loomio account, <a href='%{link}'>link it up</a>"
 
   click_to_dismiss: "Click here to dismiss this message"
   generic_confirm: "Are you sure?"
@@ -594,11 +594,11 @@ en:
 
   join_group:
     log_in: "Log in to join %{group_name}"
-    create_account: "Create an account"
+    create_account: "Please create an account"
 
   start_group:
     log_in: "Log in to set up your group"
-    create_account: "Create an account"
+    create_account: "Please create an account"
 
   #
   # INVITATIONS
