@@ -320,12 +320,14 @@ ActiveRecord::Schema.define(:version => 20131029013350) do
     t.boolean  "next_steps_completed", :default => false,          :null => false
     t.string   "full_name"
     t.string   "payment_plan",         :default => "undetermined"
+    t.string   "slug"
   end
 
   add_index "groups", ["archived_at", "id"], :name => "index_groups_on_archived_at_and_id"
   add_index "groups", ["full_name"], :name => "index_groups_on_full_name"
   add_index "groups", ["name"], :name => "index_groups_on_name"
   add_index "groups", ["parent_id"], :name => "index_groups_on_parent_id"
+  add_index "groups", ["slug"], :name => "index_groups_on_slug"
 
   create_table "invitations", :force => true do |t|
     t.string   "recipient_email",                    :null => false

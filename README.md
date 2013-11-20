@@ -18,7 +18,5 @@ If you'd like to report a bug, please follow the steps [here](https://github.com
 
 If you have any questions or feedback, get in touch via [contact@loomio.org](mailto:contact@loomio.org).
 
-Loomio on [Facebook](https://facebook.com/Loomio)
-Loomio on [Twitter](https://twitter.com/LoomioProject)
-Loomio on [Google+](https://https://plus.google.com/+LoomioOrg)
+Loomio on [Facebook](https://facebook.com/Loomio), [Twitter](https://twitter.com/LoomioProject) and [Google+](https://https://plus.google.com/+LoomioOrg)
 
