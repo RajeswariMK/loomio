@@ -14,10 +14,10 @@ Given /^a public group exists$/ do
   @group.save!
 end
 
-Given /^a private group exists$/ do
+Given /^a secret group exists$/ do
   @group = FactoryGirl.create :group
   @group.viewable_by = 'members'
-  @group.description = "this group is private"
+  @group.description = "this group is secret"
   @group.save
 end
 
@@ -37,7 +37,7 @@ Given /^a public sub\-group exists$/ do
                                   :viewable_by => 'everyone'
 end
 
-Given /^a private sub\-group exists$/ do
+Given /^a secret sub\-group exists$/ do
   @parent_group = FactoryGirl.create :group
   @sub_group = FactoryGirl.create :group, :parent => @parent_group
   @sub_group.viewable_by = 'members'
@@ -74,21 +74,21 @@ Given /^a public group exists that I am not a member of$/ do
   step "a public group exists"
 end
 
-Given /^I am a member of a private group$/ do
-  step "a private group exists"
+Given /^I am a member of a secret group$/ do
+  step "a secret group exists"
   @group.add_member! @user
 end
 
-Given /^a private group exists that I am not a member of$/ do
-  step "a private group exists"
+Given /^a secret group exists that I am not a member of$/ do
+  step "a secret group exists"
 end
 
 Given /^a public sub\-group exists that I am not a member of$/ do
   step "a public sub-group exists"
 end
 
-Given /^a private sub\-group exists that I am not a member of$/ do
-  step "a private sub-group exists"
+Given /^a secret sub\-group exists that I am not a member of$/ do
+  step "a secret sub-group exists"
 end
 
 Given /^I am a member of a public sub\-group$/ do
@@ -97,8 +97,8 @@ Given /^I am a member of a public sub\-group$/ do
   @sub_group.add_member! @user
 end
 
-Given /^I am a member of a private sub\-group$/ do
-  step "a private sub-group exists"
+Given /^I am a member of a secret sub\-group$/ do
+  step "a secret sub-group exists"
   @parent_group.add_member! @user
   @sub_group.add_member! @user
 end

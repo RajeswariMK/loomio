@@ -21,7 +21,7 @@ Feature: Individual requests group membership
 
   Scenario: Vistor cannot request membership to private group
     Given I am a visitor
-    And a private group exists
+    And a secret group exists
     When I visit the request membership page for the group
     Then I should be asked to log in
 
@@ -56,7 +56,7 @@ Feature: Individual requests group membership
 
   Scenario: User cannot request membership to private group
     Given I am logged in
-    And a private group exists
+    And a secret group exists
     When I visit the request membership page for the group
     Then I should be redirected to the dashboard
 
