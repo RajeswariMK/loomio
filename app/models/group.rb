@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   class MaximumMembershipsExceeded < Exception
   end
 
-  PERMISSION_CATEGORIES = ['everyone', 'members', 'admins', 'parent_group_members']
+  PERMISSION_CATEGORIES = ['public', 'members', 'admins', 'parent_group_members']
   PAYMENT_PLANS = ['pwyc', 'subscription', 'manual_subscription', 'undetermined']
 
   validates_presence_of :name
@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
         order('memberships_count DESC')
 
   scope :visible_to_the_public,
-        where(privacy: 'everyone').
+        where(privacy: 'public').
         parents_only
 
   # Engagement (Email Template) Related Scopes
@@ -151,8 +151,8 @@ class Group < ActiveRecord::Base
     self.archived_at.present?
   end
 
-  def privacy_everyone?
-    (privacy == 'everyone') and !archived?
+  def privacy_public?
+    (privacy == 'public') and !archived?
   end
 
   def members_can_invite_members?

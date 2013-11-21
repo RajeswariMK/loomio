@@ -4,14 +4,14 @@ describe GroupDiscussionsViewer do
 
   let(:user) { create :user }
 
-  let(:public_group) { create :group, privacy: 'everyone' }
-  let(:public_subgroup_of_public_group) { create :group, parent: public_group, privacy: 'everyone' }
+  let(:public_group) { create :group, privacy: 'public' }
+  let(:public_subgroup_of_public_group) { create :group, parent: public_group, privacy: 'public' }
 
   let(:parent_members_subgroup_of_public_group) {create :group, privacy: 'parent_group_members', parent: public_group }
   let(:members_only_subgroup_of_public_group) {create :group, parent: public_group, privacy: 'members' }
 
   let(:members_only_group){ create :group, privacy: 'members' }
-  let(:public_subgroup_of_members_only_group) { create :group, privacy: 'everyone', parent: members_only_group }
+  let(:public_subgroup_of_members_only_group) { create :group, privacy: 'public', parent: members_only_group }
   let(:parent_members_subgroup_of_members_only_group) {create :group, privacy: 'parent_group_members', parent: members_only_group }
   let(:members_only_subgroup_of_members_only_group) { create :group, privacy: 'members', parent: members_only_group }
 

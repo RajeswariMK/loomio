@@ -280,9 +280,9 @@ en:
   creating_subgroup: "Creating sub-group"
 
   group_privacy: "Privacy: '%{who}' can see this group."
-  everyone: "Everyone"
   parent_group_members: "Parent group members"
   members: "Members"
+  public: "Public"
 
   new_group: "New group"
   create_group: "Create group"
@@ -736,10 +736,6 @@ en:
 
     options:
       group:
-        viewable_by:
-          everyone: 'Everyone'
-          members: 'Members only'
-          parent_group_members: "Parent group members - only members of the main group can view this sub-group"
         members_invitable_by:
           admins: 'Coordinators only'
           members: 'All group members'

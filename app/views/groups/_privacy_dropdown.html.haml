@@ -4,9 +4,9 @@
   - if can? :edit, group
     %ul.dropdown-menu.pull-left
       %li.privacy-item
-        %a.everyone{:href => "#"}
-          %i{:class => css_for_privacy_link(group, 'everyone')}
-          = t :everyone
+        %a.public{:href => "#"}
+          %i{:class => css_for_privacy_link(group, 'public')}
+          = t :public
       - if group.parent
         %li.privacy-item
           %a.parent_group_members{:href => "#"}

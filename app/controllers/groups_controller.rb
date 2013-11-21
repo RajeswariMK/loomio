@@ -111,7 +111,7 @@ class GroupsController < GroupBaseController
     end
 
     def assign_meta_data
-      if @group.privacy == :everyone
+      if @group.privacy == :public
         @meta_title = @group.name
         @meta_description = @group.description
       end

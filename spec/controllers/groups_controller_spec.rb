@@ -6,8 +6,8 @@ describe GroupsController do
   let(:user)  { create :user }
 
   context 'signed out' do
-    context "group viewable by everyone" do
-      before { group.update_attribute(:privacy, 'everyone') }
+    context "group viewable by public" do
+      before { group.update_attribute(:privacy, 'public') }
 
       it "show" do
         get :show, :id => group.id
@@ -76,8 +76,8 @@ describe GroupsController do
 
       describe "#edit privacy" do
         it "assigns privacy and saves" do
-          xhr :post, :edit_privacy, :id => group.id, :privacy => "everyone"
-          assigns(:group).privacy.should == 'everyone'
+          xhr :post, :edit_privacy, :id => group.id, :privacy => "public"
+          assigns(:group).privacy.should == 'public'
         end
       end
 

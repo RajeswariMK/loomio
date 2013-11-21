@@ -7,9 +7,9 @@
 
       %h2= t "group_form.privacy_settings"
       - if group.parent.nil?
-        = f.input :privacy, :as => 'radio_buttons', collection: [:everyone, :members]
+        = f.input :privacy, :as => 'radio_buttons', collection: [:public, :members]
       - else
-        = f.input :privacy, :as => 'radio_buttons', collection: [:everyone, :members, :parent_group_members]
+        = f.input :privacy, :as => 'radio_buttons', collection: [:public, :members, :parent_group_members]
 
       %h2= t "group_form.invitation_settings"
       = f.input :members_invitable_by, :as => "radio_buttons", collection: [:admins, :members]

@@ -1,7 +1,7 @@
 Given /^an open group exists$/ do
   @group = FactoryGirl.create :group
   @group.add_admin! FactoryGirl.create :user
-  @group.privacy = 'everyone'
+  @group.privacy = 'public'
   @group.description = "This is an *Open Group* group, which would formally have been called a 'public group'"
   @group.save!
 end
@@ -9,7 +9,7 @@ end
 Given /^a public group exists$/ do
   @group = FactoryGirl.create :group
   @group.add_admin! FactoryGirl.create :user
-  @group.privacy = 'everyone'
+  @group.privacy = 'public'
   @group.description = "this group is public"
   @group.save!
 end
@@ -23,7 +23,7 @@ end
 
 Given(/^a public group exists with a Spanish\-speaking admin "(.*?)"$/) do |arg1|
   @group = FactoryGirl.create :group
-  @group.privacy = 'everyone'
+  @group.privacy = 'public'
   @group.save
   admin = @group.admins.first
   admin.update_attribute(:language_preference, "es")
@@ -32,9 +32,9 @@ Given(/^a public group exists with a Spanish\-speaking admin "(.*?)"$/) do |arg1
 end
 
 Given /^a public sub\-group exists$/ do
-  @parent_group = FactoryGirl.create :group, :privacy => 'everyone'
+  @parent_group = FactoryGirl.create :group, :privacy => 'public'
   @sub_group = FactoryGirl.create :group, :parent => @parent_group,
-                                  :privacy => 'everyone'
+                                  :privacy => 'public'
 end
 
 Given /^a secret sub\-group exists$/ do
@@ -168,7 +168,7 @@ Given(/^I am a member of a parent\-group that has sub\-groups I don't belong to$
   @parent_group = FactoryGirl.create :group
   @parent_group.add_member! @user
   @sub_groups = []
-  ['members', 'parent_group_members', 'everyone'].each do |privacy|
+  ['members', 'parent_group_members', 'public'].each do |privacy|
     @sub_groups << FactoryGirl.create(:group,
                                       parent: @parent_group,
                                       privacy: privacy)

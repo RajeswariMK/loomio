@@ -129,7 +129,7 @@ describe "User abilities" do
       let(:subgroup) { create(:group, parent: group) }
 
       context "public subgroup" do
-        before { subgroup.update_attributes(:privacy => 'everyone') }
+        before { subgroup.update_attributes(:privacy => 'public') }
         it { should be_able_to(:show, subgroup) }
         it { should be_able_to(:request_membership, subgroup) }
       end
@@ -248,9 +248,9 @@ describe "User abilities" do
 
     it { should_not be_able_to(:vote, motion) }
 
-    context "group privacy: everyone" do
+    context "group privacy: public" do
       before do
-        group.update_attributes!(:privacy => 'everyone')
+        group.update_attributes!(:privacy => 'public')
         discussion.reload
       end
       it { should be_able_to(:show, group) }

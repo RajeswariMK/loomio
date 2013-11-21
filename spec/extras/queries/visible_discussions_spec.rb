@@ -10,8 +10,8 @@ describe Queries::VisibleDiscussions do
   end
 
   describe 'privacy' do
-    context 'everyone (aka public)' do
-      before { group.update_attribute(:privacy, 'everyone') }
+    context 'public (aka public)' do
+      before { group.update_attribute(:privacy, 'public') }
 
       it 'guests can see discussions' do
         subject.should include discussion

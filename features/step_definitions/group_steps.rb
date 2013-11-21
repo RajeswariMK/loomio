@@ -91,7 +91,7 @@ Given /^there is a discussion in the group$/ do
 end
 
 Given /^there is a discussion in a public group$/ do
-  @group = FactoryGirl.create :group, :privacy => 'everyone'
+  @group = FactoryGirl.create :group, :privacy => 'public'
   @discussion = create_discussion :group => @group
 end
 
@@ -112,20 +112,20 @@ end
 
 When /^I fill details for the subgroup$/ do
   fill_in "group_name", :with => 'test group'
-  choose "group_privacy_everyone"
+  choose "group_privacy_public"
   choose "group_members_invitable_by_members"
 end
 
 When /^I fill details for public all members invite subgroup$/ do
   fill_in "group_name", :with => 'test group'
-  choose "group_privacy_everyone"
+  choose "group_privacy_public"
   choose "group_members_invitable_by_members"
   click_on 'group_form_submit'
 end
 
 When /^I fill details for public admin only invite subgroup$/ do
   fill_in "group_name", :with => 'test group'
-  choose "group_privacy_everyone"
+  choose "group_privacy_public"
   choose "group_members_invitable_by_admins"
 end
 

@@ -14,7 +14,7 @@ class Ability
         false
       else
         case group.privacy.to_s
-        when 'everyone'
+        when 'public'
           true
         when 'members'
           @member_group_ids.include?(group.id)

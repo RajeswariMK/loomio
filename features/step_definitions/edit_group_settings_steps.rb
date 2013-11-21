@@ -3,7 +3,7 @@ When /^I visit the group settings page$/ do
 end
 
 When /^I update the settings to public$/ do
-  choose 'group_privacy_everyone'
+  choose 'group_privacy_public'
 end
 
 When /^I update the settings to members only$/ do
@@ -19,7 +19,7 @@ Then /^the group name is changed$/ do
 end
 
 Then /^the group should be public$/ do
-  Group.where(:name=>"New Test Group", :privacy=>"everyone").size > 0
+  Group.where(:name=>"New Test Group", :privacy=>"public").size > 0
 end
 
 Then /^the group should be private$/ do
