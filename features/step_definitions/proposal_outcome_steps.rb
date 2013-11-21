@@ -87,14 +87,13 @@ Then(/^I should not see the campaign in the email body$/) do
   @last_email.default_part_body.to_s.should_not include "Was this decision important to you?"
 end
 
-Then(/^I should not see the "(.*?)" in the email body$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
 Given(/^I close the proposal manually$/) do
-  pending # express the regexp above with the code you wish you had
+  visit discussion_path(@discussion)
+  find('#close-voting').click
+  find('#confirm-action').click
 end
 
 Then(/^I should not recieve an email with subject "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+  last_email = ActionMailer::Base.deliveries.last
+  last_email.subject.should_not include arg1
 end
