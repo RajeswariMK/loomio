@@ -281,7 +281,7 @@ en:
 
   group_privacy: "Privacy: '%{who}' can see this group."
   parent_group_members: "Parent group members"
-  members: "Members"
+  secret: "Secret"
   public: "Public"
 
   new_group: "New group"

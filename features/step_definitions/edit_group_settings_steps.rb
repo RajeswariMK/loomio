@@ -7,7 +7,7 @@ When /^I update the settings to public$/ do
 end
 
 When /^I update the settings to members only$/ do
-  choose 'group_privacy_members'
+  choose 'group_privacy_secret'
 end
 
 When /^I update the group name$/ do
@@ -23,7 +23,7 @@ Then /^the group should be public$/ do
 end
 
 Then /^the group should be private$/ do
-  Group.where(:name=>"New Test Group", :privacy=>"members").size > 0
+  Group.where(:name=>"New Test Group", :privacy=>"secret").size > 0
 end
 
 Then /^I should not have access to group settings of "(.*?)"$/ do |group|

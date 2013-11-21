@@ -11,7 +11,7 @@ describe Queries::VisibleMotions do
   end
 
   describe 'privacy' do
-    context 'public (aka public)' do
+    context 'public' do
       before { group.update_attribute(:privacy, 'public') }
 
       it 'guests can see motions' do
@@ -24,8 +24,8 @@ describe Queries::VisibleMotions do
       end
     end
 
-    context 'members' do
-      before { group.update_attribute(:privacy, 'members') }
+    context 'secret' do
+      before { group.update_attribute(:privacy, 'secret') }
 
       it 'guests cannot see motions' do
         subject.should_not include motion

@@ -16,7 +16,7 @@ end
 
 Given /^a secret group exists$/ do
   @group = FactoryGirl.create :group
-  @group.privacy = 'members'
+  @group.privacy = 'secret'
   @group.description = "this group is secret"
   @group.save
 end
@@ -40,7 +40,7 @@ end
 Given /^a secret sub\-group exists$/ do
   @parent_group = FactoryGirl.create :group
   @sub_group = FactoryGirl.create :group, :parent => @parent_group
-  @sub_group.privacy = 'members'
+  @sub_group.privacy = 'secret'
   @sub_group.save
 end
 
@@ -168,7 +168,7 @@ Given(/^I am a member of a parent\-group that has sub\-groups I don't belong to$
   @parent_group = FactoryGirl.create :group
   @parent_group.add_member! @user
   @sub_groups = []
-  ['members', 'parent_group_members', 'public'].each do |privacy|
+  ['secret', 'parent_group_members', 'public'].each do |privacy|
     @sub_groups << FactoryGirl.create(:group,
                                       parent: @parent_group,
                                       privacy: privacy)

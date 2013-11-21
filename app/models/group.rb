@@ -3,13 +3,14 @@ class Group < ActiveRecord::Base
   class MaximumMembershipsExceeded < Exception
   end
 
-  PERMISSION_CATEGORIES = ['public', 'members', 'admins', 'parent_group_members']
+  PRIVACY_CATEGORIES = ['public', 'secret', 'parent_group_members']
+  INVITER_CATEGORIES = ['members', 'admins']
   PAYMENT_PLANS = ['pwyc', 'subscription', 'manual_subscription', 'undetermined']
 
   validates_presence_of :name
   validates_inclusion_of :payment_plan, in: PAYMENT_PLANS
-  validates_inclusion_of :privacy, in: PERMISSION_CATEGORIES
-  validates_inclusion_of :members_invitable_by, in: PERMISSION_CATEGORIES
+  validates_inclusion_of :privacy, in: PRIVACY_CATEGORIES
+  validates_inclusion_of :members_invitable_by, in: INVITER_CATEGORIES
   validates :description, :length => { :maximum => 250 }
   validates :name, :length => { :maximum => 250 }
 
@@ -301,7 +302,7 @@ class Group < ActiveRecord::Base
     if is_a_subgroup?
       self.privacy ||= 'parent_group_members'
     else
-      self.privacy ||= 'members'
+      self.privacy ||= 'secret'
     end
     self.members_invitable_by ||= 'members'
   end

@@ -120,8 +120,8 @@ describe "User abilities" do
       it { should_not be_able_to(:ignore, membership_request) }
     end
 
-    context "group viewable by members" do
-      before { group.update_attributes(:privacy => 'members') }
+    context "secret group" do
+      before { group.update_attributes(:privacy => 'secret') }
       it { should be_able_to(:show, group) }
     end
 
@@ -141,8 +141,8 @@ describe "User abilities" do
         it { should be_able_to(:show, discussion) }
       end
 
-      context "private subgroup" do
-        before { subgroup.update_attributes(:privacy => 'members') }
+      context "secret subgroup" do
+        before { subgroup.update_attributes(:privacy => 'secret') }
         it { should_not be_able_to(:show, subgroup) }
         it { should_not be_able_to(:request_membership, subgroup) }
       end
@@ -215,7 +215,7 @@ describe "User abilities" do
   end
 
   context "non-member of a group" do
-    let(:group) { create(:group, privacy: 'members') }
+    let(:group) { create(:group, privacy: 'secret') }
     let(:discussion) { create(:discussion, group: group) }
     let(:new_motion) { Motion.new(discussion_id: discussion.id) }
     let(:motion) { create(:motion, discussion: discussion) }
@@ -285,8 +285,8 @@ describe "User abilities" do
       it { should_not be_able_to(:destroy, motion) }
     end
 
-    context "group privacy: members" do
-      before { group.update_attributes!(:privacy => 'members') }
+    context "group privacy: secret" do
+      before { group.update_attributes!(:privacy => 'secret') }
       it { should_not be_able_to(:show, group) }
       it { should_not be_able_to(:show, discussion) }
       it { should_not be_able_to(:request_membership, group) }

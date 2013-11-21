@@ -13,9 +13,9 @@
             %i{:class => css_for_privacy_link(group, 'parent_group_members')}
             = t :parent_group_members
       %li.privacy-item
-        %a.members{:href => "#"}
-          %i{:class => css_for_privacy_link(group, 'members')}
-          = t :members
+        %a.secret{:href => "#"}
+          %i{:class => css_for_privacy_link(group, 'secret')}
+          = t :secret
     = form_tag send("edit_privacy_group_path", group.id), :remote => true, id: 'privacy-settings-form' do
       = hidden_field_tag 'id'
       = hidden_field_tag 'privacy', {id: 'privacy'}

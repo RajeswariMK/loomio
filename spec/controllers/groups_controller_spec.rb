@@ -6,7 +6,7 @@ describe GroupsController do
   let(:user)  { create :user }
 
   context 'signed out' do
-    context "group viewable by public" do
+    context "public group" do
       before { group.update_attribute(:privacy, 'public') }
 
       it "show" do
@@ -15,8 +15,8 @@ describe GroupsController do
       end
     end
 
-    context "group viewable by members" do
-      before { group.update_attribute('privacy', 'members') }
+    context "secret group" do
+      before { group.update_attribute('privacy', 'secret') }
       it "does not show" do
         get :show, :id => group.id
         response.should be_redirect
@@ -24,9 +24,9 @@ describe GroupsController do
     end
   end
 
-  context "group viewable by members" do
+  context "secret group" do
     before do
-      group.update_attribute('privacy', 'members')
+      group.update_attribute('privacy', 'secret')
       group.add_member!(user)
       sign_in user
     end

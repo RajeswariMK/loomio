@@ -23,8 +23,8 @@ describe Queries::VisibleDiscussions do
       end
     end
 
-    context 'members' do
-      before { group.update_attribute(:privacy, 'members') }
+    context 'secret' do
+      before { group.update_attribute(:privacy, 'secret') }
 
       it 'guests cannot see discussions' do
         subject.should_not include discussion

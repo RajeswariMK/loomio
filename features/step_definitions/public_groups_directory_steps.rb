@@ -1,7 +1,7 @@
 Given(/^there are various public and private groups$/) do
   @public_group = FactoryGirl.create(:group, privacy: 'public', memberships_count: 3)
   @public_group2 = FactoryGirl.create(:group, privacy: 'public', memberships_count: 5)
-  @private_group = FactoryGirl.create(:group, privacy: 'members')
+  @private_group = FactoryGirl.create(:group, privacy: 'secret')
 end
 
 Then(/^I should see the featured groups$/) do
