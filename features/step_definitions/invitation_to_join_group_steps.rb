@@ -104,7 +104,3 @@ When(/^I click an invitation link I have already used$/) do
   AcceptInvitation.and_grant_access!(@invitation, @user)
   visit invitation_path(@invitation)
 end
-
-When(/^I choose to create an account now$/) do
-  click_on 'Create one now!'
-end
