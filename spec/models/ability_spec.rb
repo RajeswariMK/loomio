@@ -121,7 +121,7 @@ describe "User abilities" do
     end
 
     context "group viewable by members" do
-      before { group.update_attributes(:viewable_by => 'members') }
+      before { group.update_attributes(:privacy => 'members') }
       it { should be_able_to(:show, group) }
     end
 
@@ -129,20 +129,20 @@ describe "User abilities" do
       let(:subgroup) { create(:group, parent: group) }
 
       context "public subgroup" do
-        before { subgroup.update_attributes(:viewable_by => 'everyone') }
+        before { subgroup.update_attributes(:privacy => 'everyone') }
         it { should be_able_to(:show, subgroup) }
         it { should be_able_to(:request_membership, subgroup) }
       end
 
       context "subgroup viewable by parent group members" do
-        before { subgroup.update_attributes(:viewable_by => 'parent_group_members') }
+        before { subgroup.update_attributes(:privacy => 'parent_group_members') }
         it { should be_able_to(:show, subgroup) }
         it { should be_able_to(:request_membership, subgroup) }
         it { should be_able_to(:show, discussion) }
       end
 
       context "private subgroup" do
-        before { subgroup.update_attributes(:viewable_by => 'members') }
+        before { subgroup.update_attributes(:privacy => 'members') }
         it { should_not be_able_to(:show, subgroup) }
         it { should_not be_able_to(:request_membership, subgroup) }
       end
@@ -215,7 +215,7 @@ describe "User abilities" do
   end
 
   context "non-member of a group" do
-    let(:group) { create(:group, viewable_by: 'members') }
+    let(:group) { create(:group, privacy: 'members') }
     let(:discussion) { create(:discussion, group: group) }
     let(:new_motion) { Motion.new(discussion_id: discussion.id) }
     let(:motion) { create(:motion, discussion: discussion) }
@@ -248,9 +248,9 @@ describe "User abilities" do
 
     it { should_not be_able_to(:vote, motion) }
 
-    context "group viewable_by: everyone" do
+    context "group privacy: everyone" do
       before do
-        group.update_attributes!(:viewable_by => 'everyone')
+        group.update_attributes!(:privacy => 'everyone')
         discussion.reload
       end
       it { should be_able_to(:show, group) }
@@ -285,15 +285,15 @@ describe "User abilities" do
       it { should_not be_able_to(:destroy, motion) }
     end
 
-    context "group viewable_by: members" do
-      before { group.update_attributes!(:viewable_by => 'members') }
+    context "group privacy: members" do
+      before { group.update_attributes!(:privacy => 'members') }
       it { should_not be_able_to(:show, group) }
       it { should_not be_able_to(:show, discussion) }
       it { should_not be_able_to(:request_membership, group) }
     end
 
     context "subgroup viewable to parent members" do
-      let(:subgroup) { create(:group, parent: group, viewable_by: 'parent_group_members') }
+      let(:subgroup) { create(:group, parent: group, privacy: 'parent_group_members') }
       it { should_not be_able_to(:request_membership, subgroup) }
     end
   end

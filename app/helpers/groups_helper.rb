@@ -1,6 +1,6 @@
 module GroupsHelper
   def css_for_privacy_link(group, link)
-    current_privacy_setting = String(group.viewable_by)
+    current_privacy_setting = String(group.privacy)
     return "icon-ok" if link == current_privacy_setting
   end
 

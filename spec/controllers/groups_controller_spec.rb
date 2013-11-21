@@ -7,7 +7,7 @@ describe GroupsController do
 
   context 'signed out' do
     context "group viewable by everyone" do
-      before { group.update_attribute(:viewable_by, 'everyone') }
+      before { group.update_attribute(:privacy, 'everyone') }
 
       it "show" do
         get :show, :id => group.id
@@ -16,7 +16,7 @@ describe GroupsController do
     end
 
     context "group viewable by members" do
-      before { group.update_attribute('viewable_by', 'members') }
+      before { group.update_attribute('privacy', 'members') }
       it "does not show" do
         get :show, :id => group.id
         response.should be_redirect
@@ -26,7 +26,7 @@ describe GroupsController do
 
   context "group viewable by members" do
     before do
-      group.update_attribute('viewable_by', 'members')
+      group.update_attribute('privacy', 'members')
       group.add_member!(user)
       sign_in user
     end
@@ -75,9 +75,9 @@ describe GroupsController do
       end
 
       describe "#edit privacy" do
-        it "assigns viewable_by and saves" do
-          xhr :post, :edit_privacy, :id => group.id, :viewable_by => "everyone"
-          assigns(:group).viewable_by.should == 'everyone'
+        it "assigns privacy and saves" do
+          xhr :post, :edit_privacy, :id => group.id, :privacy => "everyone"
+          assigns(:group).privacy.should == 'everyone'
         end
       end
 

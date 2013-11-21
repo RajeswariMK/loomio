@@ -13,7 +13,7 @@ class Ability
       if group.archived?
         false
       else
-        case group.viewable_by.to_s
+        case group.privacy.to_s
         when 'everyone'
           true
         when 'members'

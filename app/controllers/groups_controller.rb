@@ -96,8 +96,8 @@ class GroupsController < GroupBaseController
 
   def edit_privacy
     @group = Group.find(params[:id])
-    @viewable_by = params[:viewable_by]
-    @group.viewable_by = @viewable_by
+    @privacy = params[:privacy]
+    @group.privacy = @privacy
     @group.save!
   end
 
@@ -111,7 +111,7 @@ class GroupsController < GroupBaseController
     end
 
     def assign_meta_data
-      if @group.viewable_by == :everyone
+      if @group.privacy == :everyone
         @meta_title = @group.name
         @meta_description = @group.description
       end

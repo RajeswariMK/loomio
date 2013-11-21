@@ -4,16 +4,16 @@ describe GroupDiscussionsViewer do
 
   let(:user) { create :user }
 
-  let(:public_group) { create :group, viewable_by: 'everyone' }
-  let(:public_subgroup_of_public_group) { create :group, parent: public_group, viewable_by: 'everyone' }
+  let(:public_group) { create :group, privacy: 'everyone' }
+  let(:public_subgroup_of_public_group) { create :group, parent: public_group, privacy: 'everyone' }
 
-  let(:parent_members_subgroup_of_public_group) {create :group, viewable_by: 'parent_group_members', parent: public_group }
-  let(:members_only_subgroup_of_public_group) {create :group, parent: public_group, viewable_by: 'members' }
+  let(:parent_members_subgroup_of_public_group) {create :group, privacy: 'parent_group_members', parent: public_group }
+  let(:members_only_subgroup_of_public_group) {create :group, parent: public_group, privacy: 'members' }
 
-  let(:members_only_group){ create :group, viewable_by: 'members' }
-  let(:public_subgroup_of_members_only_group) { create :group, viewable_by: 'everyone', parent: members_only_group }
-  let(:parent_members_subgroup_of_members_only_group) {create :group, viewable_by: 'parent_group_members', parent: members_only_group }
-  let(:members_only_subgroup_of_members_only_group) { create :group, viewable_by: 'members', parent: members_only_group }
+  let(:members_only_group){ create :group, privacy: 'members' }
+  let(:public_subgroup_of_members_only_group) { create :group, privacy: 'everyone', parent: members_only_group }
+  let(:parent_members_subgroup_of_members_only_group) {create :group, privacy: 'parent_group_members', parent: members_only_group }
+  let(:members_only_subgroup_of_members_only_group) { create :group, privacy: 'members', parent: members_only_group }
 
   def groups_displayed(user: user, group: group)
     GroupDiscussionsViewer.groups_displayed(user: user, group: group)

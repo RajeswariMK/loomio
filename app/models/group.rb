@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name
   validates_inclusion_of :payment_plan, in: PAYMENT_PLANS
-  validates_inclusion_of :viewable_by, in: PERMISSION_CATEGORIES
+  validates_inclusion_of :privacy, in: PERMISSION_CATEGORIES
   validates_inclusion_of :members_invitable_by, in: PERMISSION_CATEGORIES
   validates :description, :length => { :maximum => 250 }
   validates :name, :length => { :maximum => 250 }
@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
         order('memberships_count DESC')
 
   scope :visible_to_the_public,
-        where(viewable_by: 'everyone').
+        where(privacy: 'everyone').
         parents_only
 
   # Engagement (Email Template) Related Scopes
@@ -151,8 +151,8 @@ class Group < ActiveRecord::Base
     self.archived_at.present?
   end
 
-  def viewable_by_everyone?
-    (viewable_by == 'everyone') and !archived?
+  def privacy_everyone?
+    (privacy == 'everyone') and !archived?
   end
 
   def members_can_invite_members?
@@ -299,9 +299,9 @@ class Group < ActiveRecord::Base
 
   def set_defaults
     if is_a_subgroup?
-      self.viewable_by ||= 'parent_group_members'
+      self.privacy ||= 'parent_group_members'
     else
-      self.viewable_by ||= 'members'
+      self.privacy ||= 'members'
     end
     self.members_invitable_by ||= 'members'
   end
