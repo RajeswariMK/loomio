@@ -90,3 +90,11 @@ end
 Then(/^I should not see the "(.*?)" in the email body$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
+
+Given(/^I close the proposal manually$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should not recieve an email with subject "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
