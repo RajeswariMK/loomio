@@ -85,6 +85,7 @@ Loomio::Application.routes.draw do
     resources :votes, only: [:new, :create, :update]
     member do
       put :close
+      put :close_manually
       put :create_outcome
       post :update_outcome
       put :edit_close_date

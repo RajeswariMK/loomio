@@ -11,7 +11,7 @@ Feature: Coordinator creates proposal outcome
 
   @javascript
   Scenario: Coordinator creates a proposal outcome
-    Given I close the proposal
+    Given the proposal has closed
     And I have recieved an email with subject "Proposal closed"
     When I click the link to create a proposal outcome
     # And I see the proposal outcome field highlighted
@@ -20,8 +20,10 @@ Feature: Coordinator creates proposal outcome
     Then my group members should receive an email with subject "Proposal outcome"
     And they should recieve a notification that an outcome has been created
 
+  @javascript
   Scenario: Coordinator closes a proposal in-app
     Given I close the proposal manually
+    And I have recieved an email with subject "Proposal closed"
     Then I should not recieve an email with subject "Proposal closed"
 
   @javascript

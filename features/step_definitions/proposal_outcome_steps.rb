@@ -4,10 +4,11 @@ Given(/^the discussion has a proposal$/) do
   @group.add_member!(@group_member)
 end
 
-Given(/^I close the proposal$/) do
+Given(/^the proposal has closed$/) do
+  @motion.closed_at = Time.now
+  @motion.save!
+  Events::MotionClosed.publish!(@motion, @user)
   visit discussion_path(@discussion)
-  find('#close-voting').click
-  find('#confirm-action').click
 end
 
 Given(/^I have recieved an email with subject "(.*?)"$/) do |arg1|
