@@ -64,7 +64,9 @@ class MotionsController < GroupBaseController
     redirect_to discussion_url(@motion.discussion, proposal: @motion)
   end
 
-  def close_manually
+  def user_closes
+    if MotionService.user_closes(@motion, permitted_params.motion, current_user)
+    end
     redirect_to discussion_url(@motion.discussion, proposal: @motion)
   end
 

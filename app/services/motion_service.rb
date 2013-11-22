@@ -17,12 +17,12 @@ class MotionService
     Events::MotionClosed.publish!(motion, user)
   end
 
-  def self.close_manually(motion, motion_params, user=nil)
+  def self.user_closes(motion, motion_params, user=nil)
     user.ability.authorize! :close, motion
     motion.store_users_that_didnt_vote
     motion.closed_at = Time.now
     save!
-    Events::MotionClosedManually.publish!(motion, user)
+    Events::MotionClosedByUser.publish!(motion, user)
   end
 
   def self.create_outcome(motion, motion_params, user)

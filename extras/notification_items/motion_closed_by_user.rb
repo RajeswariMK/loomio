@@ -1,4 +1,4 @@
-class NotificationItems::MotionClosedManually < NotificationItem
+class NotificationItems::MotionClosedByUser < NotificationItem
   attr_accessor :notification
 
   delegate :url_helpers, to: 'Rails.application.routes'
