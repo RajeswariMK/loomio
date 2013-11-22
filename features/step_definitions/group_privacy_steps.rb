@@ -187,3 +187,38 @@ Then(/^I should not see those sub\-groups' discussions$/) do
     page.should_not have_content(discussion.title)
   end
 end
+
+Given(/^I am a coordinator of a public group$/) do
+  @group = FactoryGirl.create :group
+  @group.add_admin! @user
+  @group.privacy = 'public'
+end
+
+When(/^I set the group to secret$/) do
+  visit "/groups/" + @group.id.to_s + "/edit"
+  choose 'group_privacy_secret'
+  click_on 'group_form_submit'
+end
+
+Then(/^the group should be set to secret$/) do
+  @group.reload
+  @group.privacy.should == 'secret'
+end
+
+Given(/^I am a coordinator of a secret group$/) do
+  @group = FactoryGirl.create :group
+  @group.add_admin! @user
+  @group.privacy = 'secret'
+end
+
+When(/^I set the group to public$/) do
+  visit "/groups/" + @group.id.to_s + "/edit"
+  choose 'group_privacy_public'
+  click_on 'group_form_submit'
+end
+
+Then(/^the group should be set to public$/) do
+  @group = FactoryGirl.create :group
+  @group.add_admin! @user
+  @group.privacy = 'public'
+end
