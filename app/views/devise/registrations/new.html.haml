@@ -10,6 +10,8 @@
             %p
               %strong Already have a Loomio account?
               = link_to('Link it up instead', new_user_session_path)
+            .signin_container
+              = render "form"
         -else
           %h1.header= @invitation.group.name
           .span6.main-content
@@ -21,7 +23,7 @@
                   = t(:"join_group.create_account")
               - else
                 = t :create_an_account
-            %p= t :"or_sign_in_html", link: user_session_path
+            %p= t :"or_sign_in_html", link: user_session_path, link_class: 'existing-user'
             .signin_container
               %h3 Sign up via
               = render 'devise/shared/omniauth_buttons'

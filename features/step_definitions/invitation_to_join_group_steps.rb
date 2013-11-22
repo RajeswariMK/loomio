@@ -60,7 +60,6 @@ When(/^I sign up as a new user$/) do
 end
 
 Then(/^I should see the signup form prepopulated with my email address$/) do
-  click_on 'Create one now!'
   page.should have_css('#user_email[value="jim@jam.com"]')
 end
 
