@@ -5,11 +5,16 @@
       = f.input :name
       = f.input :description, as: :text
 
-      %h2= t "group_form.privacy_settings"
       - if group.parent.nil?
-        = f.input :privacy, :as => 'radio_buttons', collection: [:public, :secret]
+        = f.input :privacy, :as => 'radio_buttons', collection: [['Public - anyone can', :public], ['Secret', :secret]]
       - else
-        = f.input :privacy, :as => 'radio_buttons', collection: [:public, :secret, :parent_group_members]
+        - privacy_settings = []
+        - ['public', 'secret', 'parent_group_members'].each do |privacy_setting|
+          - header = t "simple_form.labels.group.privacy_#{privacy_setting}_header"
+          - description = t "simple_form.labels.group.privacy_#{privacy_setting}_description"
+          - privacy_settings << ["<strong>#{header}</strong><br /><p>#{description}</p>".html_safe, privacy_setting.to_sym]
+        = f.input :privacy, :as => 'radio_buttons', collection: privacy_settings
+        / = f.input :privacy, :as => 'radio_buttons', collection: [["<strong>Public</strong><p>#{t "simple_form.labels.group.privacy_public_description"}</p>".html_safe, :public], ["<strong>Secret</strong><p>Only members can see the group and its discussions. You cannot have public discussions in a secret group.</p>".html_safe, :secret], ["<strong>Viewable by parent group members</strong><p>Same as secret, only the group and its discussions can be seen by parent group members.".html_safe, :parent_group_members]]
 
       %h2= t "group_form.invitation_settings"
       = f.input :members_invitable_by, :as => "radio_buttons", collection: [:admins, :members]

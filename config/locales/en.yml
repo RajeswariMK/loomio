@@ -666,7 +666,6 @@ en:
     name_helper: "Make the title as clear and succinct as possible."
 
   group_form:
-    privacy_settings: "Privacy settings"
     invitation_settings: "Invitation Settings"
     admins_only: "Coordinators only"
 
@@ -719,8 +718,14 @@ en:
       group:
         name: "What is the name of your group?"
         description: "Group description:"
-        viewable_by: "Who can see this group?"
         members_invitable_by: "Who can invite people to this group?"
+        privacy: Privacy
+        privacy_public_header: Public
+        privacy_public_description: Anyone can see the group and who's in it. Discussions are public by default.
+        privacy_secret_header: Secret
+        privacy_secret_description: Only members can see the group and its discussions. You cannot have public discussions in a secret group.
+        privacy_parent_group_members_header: Viewable by parent group members
+        privacy_parent_group_members_description: Same as secret, only the group and its discussions can be seen by parent group members.
       membership_request:
         introduction: "Introduce yourself"
       motion:
@@ -735,7 +740,9 @@ en:
         language_preference: "Language"
 
     options:
-      group:
+      # group:
+      #   privacy:
+      #     public: <strong>Public</strong> <br /> Anyone can see the group and who's in it. Discussions are public by default.
         members_invitable_by:
           admins: 'Coordinators only'
           members: 'All group members'
