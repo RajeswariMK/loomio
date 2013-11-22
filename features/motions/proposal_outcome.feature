@@ -25,6 +25,7 @@ Feature: Coordinator creates proposal outcome
     Given I close the proposal manually
     And I have recieved an email with subject "Proposal closed"
     Then I should not recieve an email with subject "Proposal closed"
+    And my group members should recieve a notification that the proposal has been closed
 
   @javascript
   Scenario: Coordinator edits a proposal outcome

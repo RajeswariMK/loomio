@@ -11,18 +11,17 @@ class MotionService
     # TODO ensure that motions get archived with groups
     return false unless motion.group.present?
 
+    user.ability.authorize! :close, motion unless user == nil
+
     motion.store_users_that_didnt_vote
     motion.closed_at = Time.now
     motion.save!
-    Events::MotionClosed.publish!(motion, user)
-  end
 
-  def self.user_closes(motion, motion_params, user=nil)
-    user.ability.authorize! :close, motion
-    motion.store_users_that_didnt_vote
-    motion.closed_at = Time.now
-    save!
-    Events::MotionClosedByUser.publish!(motion, user)
+    unless user == nil
+      Events::MotionClosedByUser.publish!(motion, user)
+    else
+      Events::MotionClosed.publish!(motion, user)
+    end
   end
 
   def self.create_outcome(motion, motion_params, user)

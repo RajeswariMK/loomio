@@ -64,12 +64,6 @@ class MotionsController < GroupBaseController
     redirect_to discussion_url(@motion.discussion, proposal: @motion)
   end
 
-  def user_closes
-    if MotionService.user_closes(@motion, permitted_params.motion, current_user)
-    end
-    redirect_to discussion_url(@motion.discussion, proposal: @motion)
-  end
-
   def create_outcome
     if MotionService.create_outcome(@motion, permitted_params.motion, current_user)
       flash[:success] = t("success.motion_outcome_created")
