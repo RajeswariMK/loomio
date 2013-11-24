@@ -21,8 +21,8 @@ describe Group do
     it "has memberships" do
       @group.respond_to?(:memberships)
     end
-    it "defaults to viewable by members" do
-      @group.privacy.should == 'members'
+    it "defaults to secret" do
+      @group.privacy.should == 'secret'
     end
     it "defaults to members invitable by members" do
       @group.members_invitable_by.should == 'members'
@@ -107,9 +107,9 @@ describe Group do
     end
   end
 
-  context "an existing group viewiable by members" do
+  context "an existing secret group" do
     before :each do
-      @group = create(:group, privacy: "members")
+      @group = create(:group, privacy: "secret")
       @user = create(:user)
     end
 
