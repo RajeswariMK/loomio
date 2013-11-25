@@ -74,13 +74,6 @@ describe GroupsController do
         end
       end
 
-      describe "#edit privacy" do
-        it "assigns privacy and saves" do
-          xhr :post, :edit_privacy, :id => group.id, :privacy => "public"
-          assigns(:group).privacy.should == 'public'
-        end
-      end
-
       describe "archives group" do
         before { put :archive, :id => group.id }
 
