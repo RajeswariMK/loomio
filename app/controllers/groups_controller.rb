@@ -9,12 +9,14 @@ class GroupsController < GroupBaseController
 
   #for new subgroup form
   def add_subgroup
-    @parent = Group.find(params[:id])
-    @subgroup = Group.new(:parent => @parent)
-    @subgroup.members_invitable_by = @parent.members_invitable_by
+    parent = Group.find(params[:id])
+    @subgroup = Group.new(:parent => parent)
+    @subgroup.members_invitable_by = parent.members_invitable_by
   end
 
   #for create group
+  # NOTE (JL): This seems to only be for creating subgroups. Should
+  # be more clear
   def create
     @group = Group.new(permitted_params.group)
     authorize!(:create, @group)
