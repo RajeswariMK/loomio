@@ -7,7 +7,7 @@
   = f.input :privacy, :as => 'radio_buttons', collection: group_privacy_options(group)
   = f.input :members_invitable_by, :as => "radio_buttons", collection: group_invitable_by_options(group)
   = f.input :parent_id, :as => :hidden, :input_html => { :value => group.parent.id } if group.parent
-  = f.submit submit_text, class: 'btn btn-info btn-large', id: 'complete_setup', :data => { :disable_with => submit_text }
+  = f.submit submit_text, class: 'btn btn-info btn-large', id: 'submit_group_form', :data => { :disable_with => submit_text }
 
 
 / = simple_form_for group, :validate => true do |f|

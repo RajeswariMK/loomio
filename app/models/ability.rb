@@ -32,7 +32,6 @@ class Ability
 
     can [:update,
          :email_members,
-         :edit_privacy,
          :hide_next_steps,
          :archive], Group do |group|
       @admin_group_ids.include?(group.id)

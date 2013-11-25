@@ -281,7 +281,6 @@ en:
   create_subgroup: "Create sub-group"
   creating_subgroup: "Creating sub-group"
 
-  group_privacy: "Privacy: '%{who}' can see this group."
   parent_group_members: "Parent group members"
   secret: "Secret"
   public: "Public"
@@ -727,10 +726,13 @@ en:
         privacy: Privacy
         privacy_public_header: Public
         privacy_public_description: Anyone can see the group and who's in it. Discussions are public by default.
+        privacy_public_description_short: Anyone can see this group and its discussions.
         privacy_secret_header: Secret
         privacy_secret_description: Only members can see the group and its discussions. You cannot have public discussions in a secret group.
+        privacy_secret_description_short: Only members can see this group and its discussions.
         privacy_parent_group_members_header: Viewable by parent group members
         privacy_parent_group_members_description: Same as secret, only the group and its discussions can be seen by parent group members.
+        privacy_parent_group_members_description_short: Only members and parent group members can see this group and its discussions.
         group_members_invitable_by:
           "Only coordinators"
         submit: Submitty

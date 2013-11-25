@@ -96,13 +96,6 @@ class GroupsController < GroupBaseController
     render json: users.map{|u| {name: "#{u.name} #{u.username}", username: u.username, real_name: u.name} }
   end
 
-  def edit_privacy
-    @group = Group.find(params[:id])
-    @privacy = params[:privacy]
-    @group.privacy = @privacy
-    @group.save!
-  end
-
   private
     def ensure_group_is_setup
       if user_signed_in? && @group.admins.include?(current_user)
